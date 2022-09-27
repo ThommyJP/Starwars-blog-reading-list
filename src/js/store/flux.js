@@ -45,11 +45,13 @@ const getState = ({ getStore, // Se usa para obtener info de la store en el cont
 				//reset the global store
 				setStore({ demo: demo });
 			},
+			
 			addFavorites: (param) => {
 				const store = getStore();
-				const favoritos = store.favorites.concat(param);
-				setStore({favorites: favoritos});
-				
+				if (store.favorites.includes(param)) {
+					window.alert("Ya fue agregado como favorito")
+				}
+				else {setStore({favorites: [...store.favorites, param]})}
 			},
 
 			deleteFavorites: (borrado) => {
